@@ -18,63 +18,63 @@ const Range = createSliderWithTooltip(Slider.Range)
 
 const Home = ({ match }) => {
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [price, setPrice] = useState([1, 1000]);
-  const [category, setCategory] = useState('');
-  const [rating, setRating] = useState(0)
+    const [currentPage, setCurrentPage] = useState(1);
+    const [price, setPrice] = useState([1, 1000]);
+    const [category, setCategory] = useState('');
+    const [rating, setRating] = useState(0)
 
-  const categories = ['Electronic',
-            'Cameras',
-            'Laptop',
-            'Accessoris',
-            'Headphone',
-            'Food',
-            'Clothe/Shoes',
-            'Beauty/Health',
-            'Sports',
-            'outdoor',
-            'Home'
-          ]
+    const categories = ['Electronic',
+        'Cameras',
+        'Laptop',
+        'Accessoris',
+        'Headphone',
+        'Food',
+        'Clothe/Shoes',
+        'Beauty/Health',
+        'Sports',
+        'outdoor',
+        'Home'
+    ]
 
-  const alert = useAlert();
-  const dispatch = useDispatch();
+    const alert = useAlert();
+    const dispatch = useDispatch();
 
-  const { loading, products, error, productsCount, resPerPage, filteredProductsCount } = useSelector(state => state.products)
-  const keyword = match.params.keyword;
+    const { loading, products, error, productsCount, resPerPage, filteredProductsCount } = useSelector(state => state.products)
+    const keyword = match.params.keyword;
 
-  useEffect(() => {
-      if (error) {
-        return alert.error(error)
-      }
-      dispatch(getProducts(keyword, currentPage, price, category, rating));
-  }, [dispatch, alert, error, keyword,  currentPage, price, category, rating ])
-
-
-
-  function setCurrentPageNo(pageNumber) {
-    setCurrentPage(pageNumber);
-  }
+    useEffect(() => {
+        if (error) {
+            return alert.error(error)
+        }
+        dispatch(getProducts(keyword, currentPage, price, category, rating));
+    }, [dispatch, alert, error, keyword, currentPage, price, category, rating])
 
 
-  let count = productsCount;
+
+    function setCurrentPageNo(pageNumber) {
+        setCurrentPage(pageNumber);
+    }
+
+
+    let count = productsCount;
     if (keyword) {
         count = filteredProductsCount
     }
 
 
-  return (
-    <Fragment>
-      {loading ? (
-        <Loader />
-      ) : (
+    return (
         <Fragment>
-          <MetaData title={"Buy Best Products Online"} />
-          <h1 id="products_heading">Latest Products</h1>
+            {loading ? (
+                <Loader />
+            ) : (
+                <Fragment>
+                    <MetaData title={"Buy Best Products Online"} />
+                    <h1 id="products_heading">Latest Products</h1>
 
-          <section id="products" className="container mt-5">
-            <div className="row">
+                    <section id="products" className="container mt-5">
+                        <div className="row">
 
-            {keyword ? (
+                            {keyword ? (
                                 <Fragment>
                                     <div className="col-6 col-md-3 mt-5 mb-5">
                                         <div className="px-5">
@@ -95,30 +95,30 @@ const Home = ({ match }) => {
                                                 onChange={price => setPrice(price)}
                                             />
 
-                                          <hr className="my-5" />
+                                            <hr className="my-5" />
 
-                                          <div className="mt-5">
-                                              <h4 className="mb-3">
-                                                  Categories
-                                              </h4>
+                                            <div className="mt-5">
+                                                <h4 className="mb-3">
+                                                    Categories
+                                                </h4>
 
-                                              <ul className="pl-0">
-                                                  {categories.map(category => (
-                                                      <li
-                                                          style={{
-                                                              cursor: 'pointer',
-                                                              listStyleType: 'none'
-                                                          }}
-                                                          key={category}
-                                                          onClick={() => setCategory(category)}
-                                                      >
-                                                          {category}
-                                                      </li>
-                                                  ))}
-                                              </ul>
-                                          </div>
+                                                <ul className="pl-0">
+                                                    {categories.map(category => (
+                                                        <li
+                                                            style={{
+                                                                cursor: 'pointer',
+                                                                listStyleType: 'none'
+                                                            }}
+                                                            key={category}
+                                                            onClick={() => setCategory(category)}
+                                                        >
+                                                            {category}
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
 
-                                          <hr className="my-3" />
+                                            <hr className="my-3" />
 
                                             <div className="mt-5">
                                                 <h4 className="mb-3">
@@ -147,7 +147,7 @@ const Home = ({ match }) => {
                                                     ))}
                                                 </ul>
                                             </div>
-                                           
+
                                         </div>
                                     </div>
 
@@ -159,40 +159,40 @@ const Home = ({ match }) => {
                                         </div>
                                     </div>
 
-                                    
+
                                 </Fragment>
                             ) : (
-                                    products.map(product => (
-                                        <Product key={product._id} product={product} col={3} />
-                                    ))
-                                )}
+                                products.map(product => (
+                                    <Product key={product._id} product={product} col={3} />
+                                ))
+                            )}
 
-         
-            </div>
-          </section>
 
-          {/* Pagenation Code */}
-          {resPerPage <= count && (
-            <div className="d-flex justify-content-center mt-5">
-                <Pagination
-                    activePage={currentPage}
-                    itemsCountPerPage={resPerPage}
-                    totalItemsCount={productsCount}
-                    onChange={setCurrentPageNo}
-                    nextPageText={'Next'}
-                    prevPageText={'Prev'}
-                    firstPageText={'First'}
-                    lastPageText={'Last'}
-                    itemClass="page-item"
-                    linkClass="page-link"
-                />
-            </div>
-        )} 
+                        </div>
+                    </section>
 
+                    {/* Pagenation Code */}
+                    {resPerPage <= count && (
+                        <div className="d-flex justify-content-center mt-5">
+                            <Pagination
+                                activePage={currentPage}
+                                itemsCountPerPage={resPerPage}
+                                totalItemsCount={productsCount}
+                                onChange={setCurrentPageNo}
+                                nextPageText={'Next'}
+                                prevPageText={'Prev'}
+                                firstPageText={'First'}
+                                lastPageText={'Last'}
+                                itemClass="page-item"
+                                linkClass="page-link"
+                            />
+                        </div>
+                    )}
+
+                </Fragment>
+            )}
         </Fragment>
-      )}
-    </Fragment>
-  );
+    );
 };
 
 export default Home;
