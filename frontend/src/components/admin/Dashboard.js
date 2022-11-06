@@ -20,7 +20,7 @@ const Dashboard = () => {
     const { orders, totalAmount, loading } = useSelector(state => state.allOrders)
     const { users } = useSelector(state => state.allUsers)
 
-    useEffect(()  => {
+    useEffect(() => {
         dispatch(getAdminProducts())
         dispatch(allUsers())
         dispatch(allOrders())
@@ -115,12 +115,12 @@ const Dashboard = () => {
                                 </div>
                             </div>
                         </Fragment>
-                   )} 
+                    )}
 
                 </div>
 
             </div>
-            
+
         </Fragment>
     )
 }

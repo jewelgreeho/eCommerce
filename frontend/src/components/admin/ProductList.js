@@ -80,7 +80,7 @@ const ProductsList = ({ history }) => {
                 actions: <Fragment>
                     <Link to={`/admin/product/details/${product._id}`} className="btn btn-success py-1 px-2">
                         <i className="fa fa-eye" data-toggle="tooltip" title="View Details"></i>
-                    </Link> &ensp; 
+                    </Link> &ensp;
                     <Link to={`/admin/product/${product._id}`} className="btn btn-primary py-1 px-2">
                         <i className="fa fa-pencil" data-toggle="tooltip" title="Edit"></i>
                     </Link>
@@ -90,7 +90,6 @@ const ProductsList = ({ history }) => {
                 </Fragment>
             })
         })
-
         return data;
     }
 
@@ -105,11 +104,9 @@ const ProductsList = ({ history }) => {
                 <div className="col-12 col-md-2">
                     <Sidebar />
                 </div>
-
                 <div className="col-12 col-md-10">
                     <Fragment>
                         <h1 className="my-5">All Products</h1>
-
                         {loading ? <Loader /> : (
                             <MDBDataTable
                                 data={setProducts()}
@@ -119,11 +116,9 @@ const ProductsList = ({ history }) => {
                                 hover
                             />
                         )}
-
                     </Fragment>
                 </div>
             </div>
-
         </Fragment>
     )
 }
